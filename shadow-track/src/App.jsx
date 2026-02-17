@@ -104,7 +104,7 @@ export default function App() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyan-900/20 rounded-full blur-[120px]" />
       </div>
       {/* Header */}
-      <header className="max-w-4xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <header className="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4 px-4 md:px-0">
         <div className="flex items-center gap-4">
           {/* Logo 图片 */}
           <img src={logo} alt="ShadowTrack Logo" className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" />
@@ -128,7 +128,7 @@ export default function App() {
       </header>
 
       {/* Controls */}
-      <div className="max-w-4xl mx-auto mb-8 bg-slate-900 p-4 rounded-xl border border-slate-800 flex flex-col md:flex-row gap-4">
+      <div className="max-w-7xl mx-auto mb-8 bg-slate-900/60 backdrop-blur-md border border-white/5 rounded-2xl p-4 flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-2.5 text-slate-500" size={18} />
           <input 
@@ -153,7 +153,7 @@ export default function App() {
       </div>
 
       {/* Song List */}
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-7xl mx-auto space-y-6">
         {filteredSongs.map(song => (
           <div key={song.id} className="group relative bg-slate-900/60 backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-xl transition-all hover:border-cyan-500/30 hover:shadow-cyan-500/10 hover:-translate-y-1">
             {/* 加上一个左侧的装饰条，根据组别变色 */}
@@ -205,7 +205,8 @@ export default function App() {
               <div className="flex-1">
                 <textarea 
                   placeholder="听感备注 (Markdown)..."
-                  className="w-full h-full min-h-[80px] bg-slate-950 border border-slate-800 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-500 transition resize-none"
+                  // 原代码里的 min-h-[80px] 在宽屏下有点矮，我们把它改高一点，比如 md:min-h-[120px]
+                  className="w-full h-full min-h-[80px] md:min-h-[120px] bg-slate-950/50 border border-slate-800 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-500 transition resize-none"
                   value={song.note}
                   onChange={(e) => handleNoteChange(song.id, e.target.value)}
                 />
