@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Save, Upload, Download, Search, Tag, Music, ExternalLink, RefreshCw } from 'lucide-react';
+import logo from './assets/logo.png';
 
 // --- 初始默认数据 (模拟 S3 官方列表) ---
 const DEFAULT_SONGS = [
@@ -104,12 +105,18 @@ export default function App() {
       </div>
       {/* Header */}
       <header className="max-w-4xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            ShadowTrack S3
-          </h1>
-          <p className="text-slate-400 text-sm">歌影回战辅助投票台 (Unofficial)</p>
+        <div className="flex items-center gap-4">
+          {/* Logo 图片 */}
+          <img src={logo} alt="ShadowTrack Logo" className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" />
+          
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">
+              ShadowTrack S3
+            </h1>
+            <p className="text-slate-400 text-sm">歌影回战辅助投票台 (Unofficial)</p>
+          </div>
         </div>
+        {/* 右侧按钮保持不变 */}
         <div className="flex gap-2">
           <button onClick={importData} className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-sm transition">
             <Upload size={16} /> 导入
