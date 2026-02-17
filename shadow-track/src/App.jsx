@@ -96,7 +96,12 @@ export default function App() {
   }, [songs, filterText, filterGroup]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 p-6 font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-200 p-6 font-sans selection:bg-cyan-500/30">
+      {/* 背景光晕装饰 (纯CSS画的，不需要图片) */}
+      <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyan-900/20 rounded-full blur-[120px]" />
+      </div>
       {/* Header */}
       <header className="max-w-4xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
@@ -143,7 +148,9 @@ export default function App() {
       {/* Song List */}
       <div className="max-w-4xl mx-auto space-y-6">
         {filteredSongs.map(song => (
-          <div key={song.id} className="bg-slate-900 rounded-xl border border-slate-800 p-6 shadow-lg hover:border-slate-700 transition">
+          <div key={song.id} className="group relative bg-slate-900/60 backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-xl transition-all hover:border-cyan-500/30 hover:shadow-cyan-500/10 hover:-translate-y-1">
+            {/* 加上一个左侧的装饰条，根据组别变色 */}
+            <div className={`absolute left-0 top-6 bottom-6 w-1 rounded-r-full transition-colors ${song.group === 'CN' ? 'bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-cyan-500/80 shadow-[0_0_10px_rgba(6,182,212,0.5)]'}`} />
             {/* Song Header */}
             <div className="flex justify-between items-start mb-4">
               <div>
